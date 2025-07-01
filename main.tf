@@ -25,6 +25,11 @@ resource "aws_instance" "ubuntu" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
+  root_block_device {
+    volume_size = 30            # Set root volume to 30 GB
+    volume_type = "gp3"         # Optional: faster, cheaper volume type
+  }
+
   tags = {
     Name = var.instance_name
   }
